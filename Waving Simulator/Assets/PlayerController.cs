@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		// Move forward a little
-		transform.Translate(new Vector3(0,0,1) * speed * Time.deltaTime);
+		transform.Translate(new Vector3(0,0,1) * speed *  Time.deltaTime);
 
 		// If the position is past a specific point, then warp back
 		Vector3 position = transform.position;
