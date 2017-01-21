@@ -6,28 +6,31 @@ using UnityEngine.UI;
 public class PointsManager : MonoBehaviour
 {
     public Text pointsText;
-    public float fontBadSize = 12;
-    public float fontSizeNormal = 14;
-    public float fontSizeGood = 16;
-    public float colorFadePerFrame = 0.05;
+    public float fontSizeBad = 22;
+    public float fontSizeNormal = 16;
+    public float fontSizeGood = 18;
+    public float lerpFactor = 2.0f;
+    public Color colorGood = Color.green;
+    public Color colorNeutral = Color.white;
+    public Color colorBad = Color.red;
 
     private float points = 0;
-    private Color color = Color.white;
+    private Color color;
     private float fontSize;
 
     public void AddPoints(float amount)
     {
         points += amount;
-        points = Mathf.min(0, points);
+        points = Mathf.Min(0, points);
 
         if (amount < 0)
         {
-            color = Color.red;
+            color = colorBad;
             fontSize = fontSizeBad;
         }
-        else if (ammount > 0)
+        else if (amount > 0)
         {
-            color = Color.green;
+            color = colorGood;
             fontSize = fontSizeGood;
         }
     }
@@ -41,23 +44,24 @@ public class PointsManager : MonoBehaviour
     {
         SetText();
         fontSize = fontSizeNormal;
+        color = colorNeutral;
     }
 
     void FixedUpdate()
     {
         SetText();
         
-        fontSize =
+        fontSize = Mathf.Lerp(fontSize, fontSizeNormal, lerpFactor * Time.deltaTime);
 
-        color.r = Mathf.Max(color.r + colorFadePerFrame, 1.0f);
-        color.g = Mathf.Max(color.g + colorFadePerFrame, 1.0f);
-        color.b = Mathf.Max(color.b + colorFadePerFrame, 1.0f);
+        color.r = Mathf.Lerp(color.r, colorNeutral.r, lerpFactor * Time.deltaTime);
+        color.g = Mathf.Lerp(color.g, colorNeutral.g, lerpFactor * Time.deltaTime);
+        color.b = Mathf.Lerp(color.b, colorNeutral.b, lerpFactor * Time.deltaTime);
     }
 
     private void SetText()
     {
         pointsText.text = "Points: " + points.ToString();
-        pointsText.fontSize = fontSize;
+        pointsText.fontSize = (int)fontSize;
         pointsText.color = color;
     }
 }

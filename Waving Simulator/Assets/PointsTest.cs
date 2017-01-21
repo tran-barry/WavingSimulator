@@ -5,10 +5,14 @@ using UnityEngine;
 public class PointsTest : MonoBehaviour
 {
     public PointsManager pointsManager;
-
+    private int frames = 0;
     // Update is called once per frame
     void Update()
     {
-        pointsManager.AddPoints(transform.position.z);
+        if (frames == 0)
+        {
+              pointsManager.AddPoints(transform.position.z);
+        }
+        frames = (frames + 1) % 60;
     }
 }
