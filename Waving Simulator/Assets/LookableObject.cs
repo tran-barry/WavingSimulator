@@ -4,44 +4,46 @@ using UnityEngine;
 
 public class LookableObject : MonoBehaviour {
 
-    //Public variables
-    public float pointsEarned = 10.0f;
-    public float startingHealth = 100.0f;
-    public float healthDecreaseAmount = 5.0f;//Multiplied by dtime
-    public PointsManager pointsManager;
-    
-    private float health;
-    private bool isLookedAt = false;
-    private bool isAlive = true;
+	//Public variables
+	public List<PersonInfo> Persons;
+	public PointsManager pointsManager;
+	private float currentHealth;
+	private bool isLookedAt = false;
+	private bool isAlive  { get { return currentHealth > 0; } }
+	private int ID;
+	private float healthDecreaseAmount = 1000;
 
-    //Call when looking at this object. It will do its thing in Update
-    public void LookAt()
-    {
-        isLookedAt = true;
-    }
+	//Call when looking at this object. It will do its thing in Update
+	public void LookAt()
+	{
+		isLookedAt = true;
+	}
 	
-    public float GetHealth()
-    {
-        return health;
-    }
+	public float GetHealth()
+	{
+		return currentHealth;
+	}
 
-    private void Start()
-    {
-        health = startingHealth;
-    }
+	private void Start()
+	{
+		ID = (int)(Random.value * Persons.Count);
 
-    // Update is called once per frame
-    void Update () {
+		GetComponent<Renderer>().material = Persons[ID].Material;
+		currentHealth = Persons[ID].Health;
+	}
+
+	// Update is called once per frame
+	void LateUpdate () {
 		if (isLookedAt && isAlive)
-        {
-            health -= healthDecreaseAmount * Time.deltaTime;
+		{
+			currentHealth -= healthDecreaseAmount * Time.deltaTime;
 
-            if (health <= 0.0f)
-            {
-                pointsManager.AddPoints(pointsEarned);
-                isAlive = false;
-            }
-        }
-        isLookedAt = false;
+			if (currentHealth <= 0.0f)
+			{
+				pointsManager.AddPoints(Persons[ID].Reward);
+				
+			}
+		}
+		isLookedAt = false;
 	}
 }
