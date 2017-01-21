@@ -13,7 +13,7 @@ public class PointsManager : MonoBehaviour
         points += amount;
     }
 
-     public void ResetPoints()
+    public void ResetPoints()
     {
         points = 0;
     }
