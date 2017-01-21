@@ -4,11 +4,16 @@ using UnityEngine;
 using Tobii.EyeTracking;
 
 public class RaycastGazePoint : MonoBehaviour {
-	float dpi = 0.5f;//0.5f
-	int hardOffset = 450;//450
-	
+	float _dpi = 0.5f;//0.5f
+	int _hardOffset = 425;//450
+	Vector3Averager _gazeAverager;
+	public RaycastGazePoint(){
+		_gazeAverager = new Vector3Averager(25);
+	}
+
 	// Use this for initialization
 	void Start () {
+		_gazeAverager = new Vector3Averager(25);
 	}
 	
 	// Update is called once per frame
@@ -18,7 +23,8 @@ public class RaycastGazePoint : MonoBehaviour {
 		Ray ray;
 		if(gazePoint.IsValid)
 		{
-			ray = Camera.main.ScreenPointToRay (new Vector3(gazePoint.Screen.x * dpi, gazePoint.Screen.y * dpi + hardOffset, 10.0f));	
+			_gazeAverager.AddVector(new Vector3(gazePoint.Screen.x * _dpi, gazePoint.Screen.y * _dpi + _hardOffset, 10.0f));
+			ray = Camera.main.ScreenPointToRay (_gazeAverager.Average);
 		}
 		else
 		{
@@ -38,7 +44,8 @@ public class RaycastGazePoint : MonoBehaviour {
 		Vector3	pos;
 		if (gazePoint.IsValid)
         {
-			pos = Camera.main.ScreenToWorldPoint (new Vector3(gazePoint.Screen.x * dpi, gazePoint.Screen.y * dpi + hardOffset, 10.0f));
+			_gazeAverager.AddVector(new Vector3(gazePoint.Screen.x * _dpi, gazePoint.Screen.y * _dpi + _hardOffset, 10.0f));
+			pos = Camera.main.ScreenToWorldPoint (_gazeAverager.Average);
 		}
 		else
 		{
