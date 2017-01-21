@@ -22,7 +22,6 @@ public class PlayerController : MonoBehaviour {
 
 		// If the position is past a specific point, then warp back
 		Vector3 position = transform.position;
-		Debug.Log(position.z);
 		var warp = startPos - position.z;
 		if (position.z > endPos) {
 			transform.Translate(new Vector3(0,0,warp));
