@@ -18,7 +18,7 @@ public class LookableObject : MonoBehaviour {
 	private bool isLookedAt = false;
 	private bool isAlive  { get { return currentHealth > 0; } }
 	private int ID;
-	private float healthDecreaseAmount = 1000;
+	private float healthDecreaseAmount = 1;
     private float timeFirstLookedAt = -1.0f;
     private Vector3 startScale;
 
@@ -61,9 +61,9 @@ public class LookableObject : MonoBehaviour {
 
 	// Update is called once per frame
 	void LateUpdate () {
-		if (isLookedAt)// && isAlive)
+		if (isLookedAt && isAlive)
 		{
-			// currentHealth -= healthDecreaseAmount * Time.deltaTime;
+			currentHealth -= healthDecreaseAmount * Time.deltaTime;
 
 			//if (currentHealth <= 0.0f)
 			//Double the points if the player is waving
