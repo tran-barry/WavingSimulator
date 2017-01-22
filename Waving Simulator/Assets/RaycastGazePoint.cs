@@ -24,14 +24,17 @@ public class RaycastGazePoint : MonoBehaviour {
 		GazePoint gazePoint = EyeTracking.GetGazePoint();
 		RaycastHit hit;
 		Ray ray;
+        Vector3 v;
 		if(gazePoint.IsValid)
 		{
-			_gazeAverager.AddVector(new Vector3(gazePoint.Screen.x * _dpi, gazePoint.Screen.y * _dpi + _hardOffset, 10.0f));
+            v = new Vector3(gazePoint.Screen.x * _dpi, gazePoint.Screen.y * _dpi + _hardOffset, 10.0f);
+            _gazeAverager.AddVector(new Vector3(gazePoint.Screen.x * _dpi, gazePoint.Screen.y * _dpi + _hardOffset, 10.0f));
 			ray = Camera.main.ScreenPointToRay (_gazeAverager.Average);
 		}
 		else
 		{
-			ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+            v = Input.mousePosition;
+			ray = Camera.main.ScreenPointToRay (v);
 		}
         
 		if(Physics.Raycast(ray, out hit, Mathf.Infinity))
