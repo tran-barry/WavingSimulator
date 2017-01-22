@@ -45,7 +45,7 @@ public Text staminaText;
 			}
 
 		}
-		else if(!Input.GetMouseButton(0) && transform.eulerAngles.x < 75)
+		else if((!Input.GetMouseButton(0) || stamina <= 0) && transform.eulerAngles.x < 85)
 		{
 			cube.transform.Rotate(90*Time.deltaTime, 0, 0);
 			//Debug.Log(transform.eulerAngles.x);
