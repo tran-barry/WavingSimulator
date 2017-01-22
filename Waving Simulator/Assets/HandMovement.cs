@@ -13,7 +13,7 @@ public float var = 0;
 
 public GameObject cube;
 
-public bool handWaving;
+public bool handWaving = false;
 
 public float stamina = 300;
 private float fontSize;
@@ -31,6 +31,7 @@ public Text staminaText;
 		stamina = 300;
         fontSize = 16;
         color = colorNeutral;
+		handWaving = false;
 	}
 	
 	// Update is called once per frame
@@ -39,29 +40,26 @@ public Text staminaText;
 		//Start waving and have stamina
 		if (Input.GetMouseButton(0) && stamina > 0)
 		{
-			if(transform.eulerAngles.x > 0 && transform.eulerAngles.x < 100)
+			if(cube.transform.eulerAngles.x > 0 && cube.transform.eulerAngles.x < 100)
 			{
 				cube.transform.Rotate(-75*Time.deltaTime, 0, 0);
+				handWaving = false;
 			}
 			else
 			{
 				cube.transform.eulerAngles = new Vector3(0, curve.Evaluate(var), 0);
 				var += (float)1.5 * Time.deltaTime;
+				handWaving = true;
 			}
 			stamina -= 30 * Time.deltaTime;
 			if(stamina < 0)
 				stamina = 0;
 
 		}
-		else if((!Input.GetMouseButton(0) || stamina <= 0) && transform.eulerAngles.x < 85)
+		else if((!Input.GetMouseButton(0) || stamina <= 0) && cube.transform.eulerAngles.x < 85)
 		{
 			cube.transform.Rotate(75*Time.deltaTime, 0, 0);
-		}
-		if(stamina > 0 && Input.GetMouseButton(0))
-		{
-			stamina -= 30 * Time.deltaTime;
-			if(stamina < 0)
-				stamina = 0;
+			handWaving = false;
 		}
 		if(stamina < 300 && !Input.GetMouseButton(0))
 		{
@@ -70,7 +68,7 @@ public Text staminaText;
 				stamina = 300;
 		}
 		SetText();
-		handWaving = IsWaving();
+		Debug.Log(handWaving);
 	}
 	private void SetText()
     {
@@ -79,13 +77,4 @@ public Text staminaText;
         staminaText.fontSize = (int)fontSize;
         staminaText.color = color;
     }
-
-	public bool IsWaving()
-	{
-		if(Input.GetMouseButton(0) && stamina > 0)
-		{
-			return true;
-		}
-		return false;
-	}
 }
