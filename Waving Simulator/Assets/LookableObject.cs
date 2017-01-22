@@ -5,8 +5,8 @@ using UnityEngine;
 public class LookableObject : MonoBehaviour {
 
 	//Public variables
+	private PointsManager _pointsManager;
 	public List<PersonInfo> Persons;
-	public PointsManager pointsManager;
 	private float currentHealth;
 	private bool isLookedAt = false;
 	private bool isAlive  { get { return currentHealth > 0; } }
@@ -14,8 +14,9 @@ public class LookableObject : MonoBehaviour {
 	private float healthDecreaseAmount = 1000;
 
 	//Call when looking at this object. It will do its thing in Update
-	public void LookAt()
+	public void LookAt(PointsManager manager)
 	{
+		_pointsManager = manager;
 		isLookedAt = true;
 	}
 	
@@ -41,7 +42,7 @@ public class LookableObject : MonoBehaviour {
 			// currentHealth -= healthDecreaseAmount * Time.deltaTime;
 
 			// if (currentHealth <= 0.0f)
-				PointsManager.Instance.AddPoints(Persons[ID].Reward);
+				_pointsManager.AddPoints(Persons[ID].Reward);
 				
 		}
 		isLookedAt = false;

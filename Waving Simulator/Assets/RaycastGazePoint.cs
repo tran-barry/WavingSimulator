@@ -6,6 +6,7 @@ using Tobii.EyeTracking;
 public class RaycastGazePoint : MonoBehaviour {
 	float _dpi = 1f;//0.5f
 	int _hardOffset = 0;//450
+	public PointsManager PointsManager;
 	Vector3Averager _gazeAverager;
 	public RaycastGazePoint(){
 		_gazeAverager = new Vector3Averager(25);
@@ -36,7 +37,7 @@ public class RaycastGazePoint : MonoBehaviour {
 			Debug.Log("Hit");
 			var lookable = hit.collider.gameObject.GetComponent(typeof(LookableObject));
 			if(lookable != null)
-				(lookable as LookableObject).LookAt();			
+				(lookable as LookableObject).LookAt(PointsManager);			
 		}
 	}
 

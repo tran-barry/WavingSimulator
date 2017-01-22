@@ -5,18 +5,6 @@ using UnityEngine.UI;
 
 public class PointsManager : MonoBehaviour
 {
-    private static PointsManager _instance;
-    private PointsManager(){
-
-    }
-
-    public static PointsManager Instance
-    {
-        get
-        {
-            return _instance;
-        }
-    }
 
     public Text pointsText;
     public float fontSizeBad = 22;
@@ -34,7 +22,7 @@ public class PointsManager : MonoBehaviour
     public void AddPoints(float amount)
     {
         points += amount;
-        points = Mathf.Min(0, points);
+        points = Mathf.Max(0, points);
 
         if (amount < 0)
         {
@@ -55,7 +43,6 @@ public class PointsManager : MonoBehaviour
 
     void Start()
     {
-        _instance = new PointsManager();
         SetText();
         fontSize = fontSizeNormal;
         color = colorNeutral;
