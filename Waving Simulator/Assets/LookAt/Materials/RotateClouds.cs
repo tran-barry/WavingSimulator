@@ -9,12 +9,14 @@ public class RotateClouds : MonoBehaviour {
 	
 	void Start () {
 
-		transform.Rotate(Vector3.right * 300 *  Time.deltaTime) ;
+
 	}
 	
 
 	// Update is called once per frame
 	void Update () {
+
+			transform.Rotate(0, 4 * Time.deltaTime ,0) ;
 		// Move forward a little
 	}
 }
