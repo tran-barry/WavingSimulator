@@ -36,16 +36,12 @@ public class LookableObject : MonoBehaviour {
 
 	// Update is called once per frame
 	void LateUpdate () {
-
-		if(pointsManager == null)
-			pointsManager = gameObject.GetComponentInParent(typeof(PointsManager)) as PointsManager;
-
 		if (isLookedAt)// && isAlive)
 		{
-			currentHealth -= healthDecreaseAmount * Time.deltaTime;
+			// currentHealth -= healthDecreaseAmount * Time.deltaTime;
 
-			if (currentHealth <= 0.0f)
-				pointsManager.AddPoints(Persons[ID].Reward);
+			// if (currentHealth <= 0.0f)
+				PointsManager.Instance.AddPoints(Persons[ID].Reward);
 				
 		}
 		isLookedAt = false;

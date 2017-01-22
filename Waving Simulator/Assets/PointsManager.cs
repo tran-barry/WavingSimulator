@@ -5,6 +5,19 @@ using UnityEngine.UI;
 
 public class PointsManager : MonoBehaviour
 {
+    private static PointsManager _instance;
+    private PointsManager(){
+
+    }
+
+    public static PointsManager Instance
+    {
+        get
+        {
+            return _instance;
+        }
+    }
+
     public Text pointsText;
     public float fontSizeBad = 22;
     public float fontSizeNormal = 16;
@@ -42,6 +55,7 @@ public class PointsManager : MonoBehaviour
 
     void Start()
     {
+        _instance = new PointsManager();
         SetText();
         fontSize = fontSizeNormal;
         color = colorNeutral;
