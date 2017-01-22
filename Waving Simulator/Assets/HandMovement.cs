@@ -11,6 +11,8 @@ public bool move = false;
 public AnimationCurve curve ;
 public float var = 0;
 
+public GameObject cube;
+
 public float stamina = 100;
 private float fontSize;
 private Color color;
@@ -34,18 +36,18 @@ public Text staminaText;
 		{
 			if(transform.eulerAngles.x > 0 && transform.eulerAngles.x < 100)
 			{
-				transform.Rotate(-30*Time.deltaTime, 0, 0);
+				cube.transform.Rotate(-90*Time.deltaTime, 0, 0);
 			}
 			else
 			{
-				transform.eulerAngles = new Vector3(0, curve.Evaluate(var), 0);
-				var += (float)0.5 * Time.deltaTime;
+				cube.transform.eulerAngles = new Vector3(0, curve.Evaluate(var), 0);
+				var += (float)1.5 * Time.deltaTime;
 			}
 
 		}
 		else if(!Input.GetMouseButton(0) && transform.eulerAngles.x < 75)
 		{
-			transform.Rotate(30*Time.deltaTime, 0, 0);
+			cube.transform.Rotate(90*Time.deltaTime, 0, 0);
 			//Debug.Log(transform.eulerAngles.x);
 		}
 		if(stamina > 0 && Input.GetMouseButton(0))
