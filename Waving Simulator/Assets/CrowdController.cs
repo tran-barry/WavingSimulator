@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class CrowdController : MonoBehaviour {
 
+	void GenerateNewCrowd() {
+		
+	}
+
+	void GetOtherCrowd() {
+
+		
+	}
 	// Use this for initialization
 	void Start () {
 		

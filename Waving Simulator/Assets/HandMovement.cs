@@ -13,6 +13,8 @@ public float var = 0;
 
 public GameObject cube;
 
+public bool handWaving;
+
 public float stamina = 300;
 private float fontSize;
 private Color color;
@@ -46,13 +48,15 @@ public Text staminaText;
 				cube.transform.eulerAngles = new Vector3(0, curve.Evaluate(var), 0);
 				var += (float)1.5 * Time.deltaTime;
 			}
+			stamina -= 30 * Time.deltaTime;
+			if(stamina < 0)
+				stamina = 0;
 
 		}
 		else if((!Input.GetMouseButton(0) || stamina <= 0) && transform.eulerAngles.x < 85)
 		{
 			cube.transform.Rotate(75*Time.deltaTime, 0, 0);
 		}
-
 		if(stamina > 0 && Input.GetMouseButton(0))
 		{
 			stamina -= 30 * Time.deltaTime;
@@ -66,6 +70,7 @@ public Text staminaText;
 				stamina = 300;
 		}
 		SetText();
+		handWaving = IsWaving();
 	}
 	private void SetText()
     {
