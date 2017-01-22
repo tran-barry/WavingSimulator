@@ -9,6 +9,8 @@ public class RaycastGazePoint : MonoBehaviour {
 	public PointsManager PointsManager;
 	public HandMovement HandMovement;
 
+	public GameObject FocusIndicator;
+
 	Vector3Averager _gazeAverager;
 	public RaycastGazePoint(){
 		_gazeAverager = new Vector3Averager(25);
@@ -24,16 +26,20 @@ public class RaycastGazePoint : MonoBehaviour {
 		GazePoint gazePoint = EyeTracking.GetGazePoint();
 		RaycastHit hit;
 		Ray ray;
+		Vector3 vector;
 		if(gazePoint.IsValid)
 		{
-			_gazeAverager.AddVector(new Vector3(gazePoint.Screen.x * _dpi, gazePoint.Screen.y * _dpi + _hardOffset, 10.0f));
+			vector = new Vector3(gazePoint.Screen.x * _dpi, gazePoint.Screen.y * _dpi + _hardOffset, 10.0f);
+			_gazeAverager.AddVector(vector);
 			ray = Camera.main.ScreenPointToRay (_gazeAverager.Average);
 		}
 		else
 		{
-			ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+			vector = Input.mousePosition;
+			ray = Camera.main.ScreenPointToRay (vector);
 		}
-        
+		FocusIndicator.transform.position =  ray.origin + ray.direction;
+		
 		if(Physics.Raycast(ray, out hit, Mathf.Infinity))
 		{
 			//Debug.Log("Hit");
