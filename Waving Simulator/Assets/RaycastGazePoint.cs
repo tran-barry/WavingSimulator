@@ -39,7 +39,7 @@ public class RaycastGazePoint : MonoBehaviour {
 			//Debug.Log("Hit");
 			var lookable = hit.collider.gameObject.GetComponent(typeof(LookableObject));
 			if(lookable != null)
-				(lookable as LookableObject).LookAt(PointsManager, HandMovement.IsWaving());
+				(lookable as LookableObject).LookAt(PointsManager, HandMovement.handWaving);
 		}
 	}
 
