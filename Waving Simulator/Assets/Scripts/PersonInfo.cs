@@ -6,5 +6,5 @@ public class PersonInfo
 {
     public float Health;
     public Material Material;
-    public int Reward;
+    public float Reward;
 }
