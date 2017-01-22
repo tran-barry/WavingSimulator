@@ -8,7 +8,7 @@ public class RaycastGazePoint : MonoBehaviour {
 	int _hardOffset = 0;//450
 	public PointsManager PointsManager;
 	public HandMovement HandMovement;
-
+	public GameObject FocusIndicator;
 	Vector3Averager _gazeAverager;
 	public RaycastGazePoint(){
 		_gazeAverager = new Vector3Averager(25);
@@ -33,6 +33,8 @@ public class RaycastGazePoint : MonoBehaviour {
 		{
 			ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 		}
+
+		FocusIndicator.transform.position =  ray.origin + ray.direction;
         
 		if(Physics.Raycast(ray, out hit, Mathf.Infinity))
 		{
