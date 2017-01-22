@@ -37,6 +37,10 @@ public class LookableObject : MonoBehaviour {
 	public void GenerateNewPerson() {
 		ID = (int)(Random.value * Persons.Count);
        
+		SetPerson(ID);
+	}
+
+	public void SetPerson(int ID) {
 		GetComponent<Renderer>().material = Persons[ID].Material;
 		currentHealth = Persons[ID].Health;
 	}
