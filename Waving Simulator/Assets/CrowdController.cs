@@ -8,6 +8,8 @@ public class CrowdController : MonoBehaviour {
 		var crowdSize = transform.childCount;
 		GameObject child;
 		for (int i = 0 ; i < crowdSize ; i++) {
+			//child = transform.GetChild(i);
+			//child.GenerateNewPerson();
 		}
 	}
 
