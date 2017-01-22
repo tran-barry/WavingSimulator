@@ -11,6 +11,8 @@ public class LookableObject : MonoBehaviour {
 	public PointsManager pointsManager;
     public float scaleFactor = 0.2f;
     public float sinFreq = 7.5f;
+    public Material goodMat;
+    public Material badMat;
 
 	private float currentHealth;
 	private bool isLookedAt = false;
@@ -65,8 +67,23 @@ public class LookableObject : MonoBehaviour {
 
 			//if (currentHealth <= 0.0f)
 			//Double the points if the player is waving
-				pointsManager.AddPoints(_isWaving ? Persons[ID].Reward * 2 : Persons[ID].Reward);
+                float pointsToGive = _isWaving ? Persons[ID].Reward * 2 : Persons[ID].Reward;
+				pointsManager.AddPoints(pointsToGive);
 
+
+            var comp = GetComponentInParent<ParticleSystem>();
+             
+            var ps = (ParticleSystem)comp;
+            if (pointsToGive > 0)
+            {
+                
+                ps.GetComponent<Renderer>().material = goodMat;
+            }
+            else if (pointsToGive < 0)
+            {
+                ps.GetComponent<Renderer>().material = badMat;
+            }
+            ps.Emit(1);
 		}
         else
         {
