@@ -13,7 +13,7 @@ public float var = 0;
 
 public GameObject cube;
 
-public float stamina = 100;
+public float stamina = 300;
 private float fontSize;
 private Color color;
 public Color colorNeutral = Color.green;
@@ -26,6 +26,7 @@ public Text staminaText;
 		curve.preWrapMode = WrapMode.PingPong;
 		curve.postWrapMode = WrapMode.PingPong;
 		SetText();
+		stamina = 300;
         fontSize = 16;
         color = colorNeutral;
 	}
@@ -36,7 +37,7 @@ public Text staminaText;
 		{
 			if(transform.eulerAngles.x > 0 && transform.eulerAngles.x < 100)
 			{
-				cube.transform.Rotate(-90*Time.deltaTime, 0, 0);
+				cube.transform.Rotate(-75*Time.deltaTime, 0, 0);
 			}
 			else
 			{
@@ -47,8 +48,7 @@ public Text staminaText;
 		}
 		else if((!Input.GetMouseButton(0) || stamina <= 0) && transform.eulerAngles.x < 85)
 		{
-			cube.transform.Rotate(90*Time.deltaTime, 0, 0);
-			//Debug.Log(transform.eulerAngles.x);
+			cube.transform.Rotate(75*Time.deltaTime, 0, 0);
 		}
 		if(stamina > 0 && Input.GetMouseButton(0))
 		{
@@ -56,11 +56,11 @@ public Text staminaText;
 			if(stamina < 0)
 				stamina = 0;
 		}
-		if(stamina < 100 && !Input.GetMouseButton(0))
+		if(stamina < 300 && !Input.GetMouseButton(0))
 		{
 			stamina += 30 * Time.deltaTime;
-			if(stamina > 100)
-				stamina = 100;
+			if(stamina > 300)
+				stamina = 300;
 		}
 		SetText();
 	}
