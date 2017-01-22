@@ -61,7 +61,7 @@ public class PointsManager : MonoBehaviour
 
     private void SetText()
     {
-        pointsText.text = "Points: " + points.ToString();
+        pointsText.text = "Points: " + points.ToString("0.#");
         pointsText.fontSize = (int)fontSize;
         pointsText.color = color;
     }
