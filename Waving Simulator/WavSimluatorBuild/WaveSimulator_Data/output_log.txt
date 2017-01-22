@@ -2,10 +2,10 @@ Mono path[0] = 'C:/dev/GitHub/WavingSimulator/Waving Simulator/WavSimluatorBuild
 Mono path[1] = 'C:/dev/GitHub/WavingSimulator/Waving Simulator/WavSimluatorBuild/WaveSimulator_Data/Mono'
 Mono config path = 'C:/dev/GitHub/WavingSimulator/Waving Simulator/WavSimluatorBuild/WaveSimulator_Data/Mono/etc'
 PlayerConnection initialized from C:/dev/GitHub/WavingSimulator/Waving Simulator/WavSimluatorBuild/WaveSimulator_Data (debug = 0)
-PlayerConnection initialized network socket : 0.0.0.0 55431
-Multi-casting "[IP] 10.69.82.197 [Port] 55431 [Flags] 2 [Guid] 1737990269 [EditorId] 3996158291 [Version] 1048832 [Id] WindowsPlayer(BARRYT-W530-W8) [Debug] 0" to [225.0.0.222:54997]...
-Started listening to [0.0.0.0:55431]
-PlayerConnection already initialized - listening to [0.0.0.0:55431]
+PlayerConnection initialized network socket : 0.0.0.0 55415
+Multi-casting "[IP] 10.69.82.197 [Port] 55415 [Flags] 2 [Guid] 4049410891 [EditorId] 3996158291 [Version] 1048832 [Id] WindowsPlayer(BARRYT-W530-W8) [Debug] 0" to [225.0.0.222:54997]...
+Started listening to [0.0.0.0:55415]
+PlayerConnection already initialized - listening to [0.0.0.0:55415]
 Initialize engine version: 5.5.0f3 (38b4efef76f0)
 GfxDevice: creating device client; threaded=1
 Direct3D:
@@ -29,7 +29,7 @@ Platform assembly: C:\dev\GitHub\WavingSimulator\Waving Simulator\WavSimluatorBu
 Loading C:\dev\GitHub\WavingSimulator\Waving Simulator\WavSimluatorBuild\WaveSimulator_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
 Platform assembly: C:\dev\GitHub\WavingSimulator\Waving Simulator\WavSimluatorBuild\WaveSimulator_Data\Managed\Tobii.EyeX.Client.Net20.dll (this message is harmless)
 Loading C:\dev\GitHub\WavingSimulator\Waving Simulator\WavSimluatorBuild\WaveSimulator_Data\Managed\Tobii.EyeX.Client.Net20.dll into Unity Child Domain
-- Completed reload, in  0.033 seconds
+- Completed reload, in  0.044 seconds
 Platform assembly: C:\dev\GitHub\WavingSimulator\Waving Simulator\WavSimluatorBuild\WaveSimulator_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\dev\GitHub\WavingSimulator\Waving Simulator\WavSimluatorBuild\WaveSimulator_Data\Managed\System.dll (this message is harmless)
 desktop: 1920x1080 50Hz; virtual: 1920x1080 at 0,0
