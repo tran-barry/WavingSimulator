@@ -8,8 +8,8 @@ public class LookableObject : MonoBehaviour {
 	private PointsManager _pointsManager;
 	public List<PersonInfo> Persons;
 	public PointsManager pointsManager;
-    public float scaleFactor = 0.1f;
-    public float sinFreq = 1.0f;
+    public float scaleFactor = 0.2f;
+    public float sinFreq = 7.5f;
 
 	private float currentHealth;
 	private bool isLookedAt = false;
