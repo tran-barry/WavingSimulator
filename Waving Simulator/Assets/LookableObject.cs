@@ -6,6 +6,7 @@ public class LookableObject : MonoBehaviour {
 
 	//Public variables
 	private PointsManager _pointsManager;
+	private bool _isWaving;
 	public List<PersonInfo> Persons;
 	public PointsManager pointsManager;
     public float scaleFactor = 0.2f;
@@ -20,9 +21,10 @@ public class LookableObject : MonoBehaviour {
     private Vector3 startScale;
 
 	//Call when looking at this object. It will do its thing in Update
-	public void LookAt(PointsManager manager)
+	public void LookAt(PointsManager manager, bool isWaving)
 	{
 		_pointsManager = manager;
+		_isWaving = isWaving;
 		isLookedAt = true;
 
         if (timeFirstLookedAt < 0.0f)
@@ -32,7 +34,7 @@ public class LookableObject : MonoBehaviour {
 	}
 	
 	// Call this to make it generate a new one
-	public void New() {
+	public void GenerateNewPerson() {
 		ID = (int)(Random.value * Persons.Count);
        
 		GetComponent<Renderer>().material = Persons[ID].Material;
@@ -48,10 +50,7 @@ public class LookableObject : MonoBehaviour {
 	{
 		startScale = transform.localScale;
 
-		ID = (int)(Random.value * Persons.Count);
-        
-		GetComponent<Renderer>().material = Persons[ID].Material;
-		currentHealth = Persons[ID].Health;
+		GenerateNewPerson();
 	}
 
 	// Update is called once per frame
@@ -61,7 +60,8 @@ public class LookableObject : MonoBehaviour {
 			// currentHealth -= healthDecreaseAmount * Time.deltaTime;
 
 			//if (currentHealth <= 0.0f)
-				pointsManager.AddPoints(Persons[ID].Reward);
+			//Double the points if the player is waving
+				pointsManager.AddPoints(_isWaving ? Persons[ID].Reward * 2 : Persons[ID].Reward);
 
 		}
         else
