@@ -77,11 +77,11 @@ public class LookableObject : MonoBehaviour {
             if (pointsToGive > 0)
             {
                 
-                ps.GetComponent<Renderer>().material = goodMat;
+                ps.GetComponent<ParticleSystemRenderer>().material = goodMat;
             }
             else if (pointsToGive < 0)
             {
-                ps.GetComponent<Renderer>().material = badMat;
+                ps.GetComponent<ParticleSystemRenderer>().material = badMat;
             }
             ps.Emit(1);
 		}
