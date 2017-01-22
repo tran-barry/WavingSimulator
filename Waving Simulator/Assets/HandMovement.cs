@@ -72,7 +72,7 @@ public Text staminaText;
         staminaText.color = color;
     }
 
-	public bool isWaving()
+	public bool IsWaving()
 	{
 		if(Input.GetMouseButton(0) && stamina > 0 && transform.eulerAngles.x == 0)
 			return true;
