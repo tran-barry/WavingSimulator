@@ -5,7 +5,10 @@ using UnityEngine;
 public class CrowdController : MonoBehaviour {
 
 	void GenerateNewCrowd() {
-		
+		var crowdSize = transform.childCount;
+		GameObject child;
+		for (int i = 0 ; i < crowdSize ; i++) {
+		}
 	}
 
 	void GetOtherCrowd() {
