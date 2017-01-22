@@ -4,19 +4,13 @@ using UnityEngine;
 
 public class CrowdController : MonoBehaviour {
 
-	void GenerateNewCrowd() {
-		var crowdSize = transform.childCount;
-		GameObject child;
-		for (int i = 0 ; i < crowdSize ; i++) {
-			//child = transform.GetChild(i);
-			//child.GenerateNewPerson();
+	public void GenerateNewCrowd() {
+		foreach(Transform child in transform) {
+			LookableObject person = child.GetComponent(typeof(LookableObject)) as LookableObject;
+			person.GenerateNewPerson();
 		}
 	}
 
-	void GetOtherCrowd() {
-
-		
-	}
 	// Use this for initialization
 	void Start () {
 		
