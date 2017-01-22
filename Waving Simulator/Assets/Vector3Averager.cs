@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Vector3Averager : MonoBehaviour {
+public class Vector3Averager {
 	private int _count = 0;
 	private int _vectorsAveraged;
 	private Vector3[] _vectorArray;
