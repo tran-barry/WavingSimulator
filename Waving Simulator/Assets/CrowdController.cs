@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class CrowdController : MonoBehaviour {
 
-	void GenerateNewCrowd() {
-		
+	public void GenerateNewCrowd() {
+		foreach(Transform child in transform) {
+			LookableObject person = child.GetComponent(typeof(LookableObject)) as LookableObject;
+			person.GenerateNewPerson();
+		}
 	}
 
-	void GetOtherCrowd() {
-
-		
-	}
 	// Use this for initialization
 	void Start () {
 		
