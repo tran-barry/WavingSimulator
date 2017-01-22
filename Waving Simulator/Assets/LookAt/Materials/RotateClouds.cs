@@ -16,7 +16,7 @@ public class RotateClouds : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-			transform.Rotate(0, 4 * Time.deltaTime ,0) ;
+			transform.Rotate(4* Time.deltaTime, 4 * Time.deltaTime ,0) ;
 		// Move forward a little
 	}
 }
