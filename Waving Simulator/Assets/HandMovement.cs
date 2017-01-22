@@ -33,6 +33,8 @@ public Text staminaText;
 	
 	// Update is called once per frame
 	void Update () {
+
+		//Start waving and have stamina
 		if (Input.GetMouseButton(0) && stamina > 0)
 		{
 			if(transform.eulerAngles.x > 0 && transform.eulerAngles.x < 100)
@@ -50,6 +52,7 @@ public Text staminaText;
 		{
 			cube.transform.Rotate(75*Time.deltaTime, 0, 0);
 		}
+
 		if(stamina > 0 && Input.GetMouseButton(0))
 		{
 			stamina -= 30 * Time.deltaTime;
