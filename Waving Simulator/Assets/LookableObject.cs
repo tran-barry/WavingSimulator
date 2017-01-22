@@ -60,7 +60,7 @@ public class LookableObject : MonoBehaviour {
 		{
 			// currentHealth -= healthDecreaseAmount * Time.deltaTime;
 
-			if (currentHealth <= 0.0f)
+			//if (currentHealth <= 0.0f)
 				pointsManager.AddPoints(Persons[ID].Reward);
 
 		}
