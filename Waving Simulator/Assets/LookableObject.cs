@@ -19,6 +19,14 @@ public class LookableObject : MonoBehaviour {
 		isLookedAt = true;
 	}
 	
+	// Call this to make it generate a new one
+	public void New() {
+		ID = (int)(Random.value * Persons.Count);
+
+		GetComponent<Renderer>().material = Persons[ID].Material;
+		currentHealth = Persons[ID].Health;
+	}
+
 	public float GetHealth()
 	{
 		return currentHealth;
@@ -26,12 +34,7 @@ public class LookableObject : MonoBehaviour {
 
 	private void Start()
 	{
-		
-
-		ID = (int)(Random.value * Persons.Count);
-
-		GetComponent<Renderer>().material = Persons[ID].Material;
-		currentHealth = Persons[ID].Health;
+		New();
 	}
 
 	// Update is called once per frame

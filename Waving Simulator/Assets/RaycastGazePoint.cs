@@ -33,7 +33,7 @@ public class RaycastGazePoint : MonoBehaviour {
         
 		if(Physics.Raycast(ray, out hit, Mathf.Infinity))
 		{
-			Debug.Log("Hit");
+			//Debug.Log("Hit");
 			var lookable = hit.collider.gameObject.GetComponent(typeof(LookableObject));
 			if(lookable != null)
 				(lookable as LookableObject).LookAt();			
