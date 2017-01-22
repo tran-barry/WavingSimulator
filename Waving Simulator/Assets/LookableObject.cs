@@ -32,7 +32,7 @@ public class LookableObject : MonoBehaviour {
 	}
 	
 	// Call this to make it generate a new one
-	public void New() {
+	public void GenerateNewPerson() {
 		ID = (int)(Random.value * Persons.Count);
 
 		GetComponent<Renderer>().material = Persons[ID].Material;
@@ -48,10 +48,7 @@ public class LookableObject : MonoBehaviour {
 	{
 		startScale = transform.localScale;
 
-		ID = (int)(Random.value * Persons.Count);
-
-		GetComponent<Renderer>().material = Persons[ID].Material;
-		currentHealth = Persons[ID].Health;
+		GenerateNewPerson();
 	}
 
 	// Update is called once per frame

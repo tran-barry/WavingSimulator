@@ -71,4 +71,11 @@ public Text staminaText;
         staminaText.fontSize = (int)fontSize;
         staminaText.color = color;
     }
+
+	public bool isWaving()
+	{
+		if(Input.GetMouseButton(0) && stamina > 0 && transform.eulerAngles.x == 0)
+			return true;
+		return false;
+	}
 }
