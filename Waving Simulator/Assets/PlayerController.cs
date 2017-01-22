@@ -6,7 +6,7 @@ using System.IO;
 using System.Text;
 
 public class PlayerController : MonoBehaviour {
-	float speed = 1;
+	float speed = 0;
 	float startPos = 0;
 	float endPos = 10;
 
