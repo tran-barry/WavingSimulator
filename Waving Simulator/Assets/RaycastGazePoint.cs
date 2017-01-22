@@ -58,7 +58,7 @@ public class RaycastGazePoint : MonoBehaviour {
 			pos = Camera.main.ScreenToWorldPoint (new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f));			
 		}
 		
-		Gizmos.color = Color.red;
-		Gizmos.DrawWireSphere(pos, 0.5f);
+		//Gizmos.color = Color.red;
+		//Gizmos.DrawWireSphere(pos, 0.5f);
 	}
 }
