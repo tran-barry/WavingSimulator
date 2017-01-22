@@ -13,6 +13,8 @@ public float var = 0;
 
 public GameObject cube;
 
+public bool handWaving;
+
 public float stamina = 300;
 private float fontSize;
 private Color color;
@@ -33,6 +35,8 @@ public Text staminaText;
 	
 	// Update is called once per frame
 	void Update () {
+
+		//Start waving and have stamina
 		if (Input.GetMouseButton(0) && stamina > 0)
 		{
 			if(transform.eulerAngles.x > 0 && transform.eulerAngles.x < 100)
@@ -44,6 +48,9 @@ public Text staminaText;
 				cube.transform.eulerAngles = new Vector3(0, curve.Evaluate(var), 0);
 				var += (float)1.5 * Time.deltaTime;
 			}
+			stamina -= 30 * Time.deltaTime;
+			if(stamina < 0)
+				stamina = 0;
 
 		}
 		else if((!Input.GetMouseButton(0) || stamina <= 0) && transform.eulerAngles.x < 85)
@@ -63,6 +70,7 @@ public Text staminaText;
 				stamina = 300;
 		}
 		SetText();
+		handWaving = IsWaving();
 	}
 	private void SetText()
     {
@@ -74,8 +82,10 @@ public Text staminaText;
 
 	public bool IsWaving()
 	{
-		if(Input.GetMouseButton(0) && stamina > 0 && transform.eulerAngles.x == 0)
+		if(Input.GetMouseButton(0) && stamina > 0)
+		{
 			return true;
+		}
 		return false;
 	}
 }
