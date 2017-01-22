@@ -7,16 +7,26 @@ public class LookableObject : MonoBehaviour {
 	//Public variables
 	public List<PersonInfo> Persons;
 	public PointsManager pointsManager;
+    public float scaleFactor = 0.1f;
+    public float sinFreq = 1.0f;
+
 	private float currentHealth;
 	private bool isLookedAt = false;
 	private bool isAlive  { get { return currentHealth > 0; } }
 	private int ID;
 	private float healthDecreaseAmount = 1000;
+    private float timeFirstLookedAt = -1.0f;
+    private Vector3 startScale;
 
 	//Call when looking at this object. It will do its thing in Update
 	public void LookAt()
 	{
 		isLookedAt = true;
+
+        if (timeFirstLookedAt < 0.0f)
+        {
+            timeFirstLookedAt = Time.time;
+        }
 	}
 	
 	public float GetHealth()
@@ -26,7 +36,7 @@ public class LookableObject : MonoBehaviour {
 
 	private void Start()
 	{
-		
+		startScale = transform.localScale;
 
 		ID = (int)(Random.value * Persons.Count);
 
@@ -46,8 +56,33 @@ public class LookableObject : MonoBehaviour {
 
 			if (currentHealth <= 0.0f)
 				pointsManager.AddPoints(Persons[ID].Reward);
-				
+
 		}
-		isLookedAt = false;
+        else
+        {
+            timeFirstLookedAt = -1.0f;
+        }
+
+        Pulsate();
+
+       	isLookedAt = false;
 	}
+
+    private void Pulsate()
+    {
+        if (isLookedAt)
+        {
+            //sin wave pulsate the size
+            transform.localScale = Vector3.one * (1.0f + scaleFactor * Mathf.Sin(sinFreq * (timeFirstLookedAt - Time.time)));
+        }
+        else
+        {
+            //Linearly interpolate back to starting scale
+            Vector3 localScale = transform.localScale;
+            localScale.x = Mathf.Lerp(transform.localScale.x, startScale.x, 1.0f * Time.deltaTime);
+            localScale.y = Mathf.Lerp(transform.localScale.y, startScale.y, 1.0f * Time.deltaTime);
+            localScale.z = Mathf.Lerp(transform.localScale.z, startScale.z, 1.0f * Time.deltaTime);
+            transform.localScale = localScale;
+        }
+    }
 }
